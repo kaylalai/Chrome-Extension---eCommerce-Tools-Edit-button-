@@ -3,105 +3,170 @@
 
 <head>
     <style>
-        h3 {
-            color: BLACK;
-        }
-        /* toggle in label designing */
-        
-        .toggle {
-            position: relative;
-            display: inline-block;
-            width: 75px;
-            height: 26.5px;
-            background-color: red;
-            border-radius: 30px;
-            border: 2px solid black;
-        }
-        /* After slide changes */
-        
-        .toggle:after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background-color: rgb(20, 20, 20);
-            top: 1px;
-            left: 1px;
-            transition: all 0.5s;
-        }
-        /* Toggle text */
-        /* check box for product*/
-        /* Checkbox cheked effect */
-        
-        .checkbox1:not(:checked)+.toggle::after {
-            left: 49px;
-        }
-        /* Checkbox checked toggle label bg color */
-        /* set to not checked [not(:checked)] for begnning */
-        
-        .checkbox1:not(:checked)+.toggle {
-            background-color: rgb(95, 94, 94);
-        }
-        /* Checkbox vanished */
-        
-        .checkbox1 {
-            display: none;
-        }
-        /* check box for econtent zone*/
-        /* Checkbox cheked effect */
-        
-        .checkbox2:not(:checked)+.toggle::after {
-            left: 49px;
-        }
-        /* Checkbox cheked toggle label bg color */
-        
-        .checkbox2:not(:checked)+.toggle {
-            background-color: rgb(95, 94, 94);
-        }
-        /* Checkbox vanished */
-        
-        .checkbox2 {
-            display: none;
-        }
-        
-        div {
+        .first_container {
+            justify-content: center;
+            padding: 5px;
+            text-align: center;
             border-radius: 2px;
             background-color: #f2f2f2;
-            padding: 20px;
+            padding: 10px;
         }
         
-        textarea {
-            width: 200px;
-            height: 150px;
+        .text {
+            border-radius: 2px;
+            background-color: #f2f2f2;
+            padding: 10px;
         }
+        
+        .onoffswitch {
+            position: relative;
+            width: 85px;
+        }
+        
+        .onoffswitch-checkbox {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .onoffswitch-label {
+            display: block;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid #999999;
+            border-radius: 20px;
+        }
+        
+        .onoffswitch-inner {
+            display: block;
+            width: 200%;
+            margin-left: -100%;
+            transition: margin 0.3s ease-in 0s;
+        }
+        
+        .onoffswitch-inner:before,
+        .onoffswitch-inner:after {
+            display: block;
+            float: left;
+            width: 50%;
+            height: 30px;
+            padding: 0;
+            line-height: 30px;
+            font-size: 14px;
+            color: white;
+            font-family: Trebuchet, Arial, sans-serif;
+            font-weight: bold;
+            box-sizing: border-box;
+        }
+        
+        .onoffswitch-inner:before {
+            content: "ON";
+            padding-left: 10px;
+            background-color: #34A7C1;
+            color: #FFFFFF;
+        }
+        
+        .onoffswitch-inner:after {
+            content: "OFF";
+            padding-right: 10px;
+            background-color: #EEEEEE;
+            color: #999999;
+            text-align: right;
+        }
+        
+        .onoffswitch-switch {
+            display: block;
+            width: 18px;
+            margin: 10px;
+            background: #FFFFFF;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 115px;
+            border: 2px solid #999999;
+            border-radius: 20px;
+            transition: all 0.3s ease-in 0s;
+        }
+        
+        .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+            margin-left: 0;
+        }
+        
+        .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+            right: 0px;
+        }
+
+        /* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 28%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column {
+    width: 28%;
+  }
+}
     </style>
 </head>
 
-
-
-<body style="width: 240px;">
-    <p>
-        <img src="icon.png" alt="icon" style="float:left;width:22px;height:22px;">&nbsp&nbsp
-        <strong>Pathway to Edit your Neto store</strong>
-    </p>
-    <hr>
-    <h4>Turn On / Off edit product button</h4>
-    <input type="checkbox" name="checkbox_1" id="switch1" class="checkbox1" />
-    <label for="switch1" class="toggle" id="submit-btn"></label>
-    <hr>
-
-    <h4>Turn On / Off edit eContentzone button</h4>
-    <input type="checkbox" name="checkbox_2" id="switch2" class="checkbox2" />
-    <label for="switch2" class="toggle" id="btn"></label>
-    </label>
-    <hr>
-    <div>
-        <p><strong>Paste the Link in below Text area</strong> </p>
-        <textarea id="textarea" placeholder="Add link here, e.g www.netostore.com.au"> </textarea>
+<body style="width:500px;">
+    <div class="first_container">
+        <img src="icon-32.png" alt="icon" style="width:12px;height:12px;">
+        <strong>eCommerce Tools</strong>
     </div>
+    <hr>
+    <div class="row">
+        <div class="column"><strong> Edit Product</strong></div>
+        <div class="column"> <strong> Edit content Zone</strong></div>
+        <div class="column"><strong> Advertising Campaign</strong></div>
+    </div>
+    <div class="row">
+        <div class="column onoffswitch">
+            
+            <input type="checkbox" class="onoffswitch-checkbox" id="onoffswitch_1" tabindex="0">
+            <label class="onoffswitch-label" for="onoffswitch_1">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+            </label>
+            
+        </div>
+        
+        <div class="column onoffswitch">
+           
+            <input type="checkbox"  class="onoffswitch-checkbox" id="onoffswitch_2" tabindex="0">
+            <label class="onoffswitch-label" for="onoffswitch_2">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+        </label>
+        </div>
+        
+        <div class="column onoffswitch">
+            
+            <input type="checkbox" class="onoffswitch-checkbox" id="onoffswitch_3" tabindex="0">
+            <label class="onoffswitch-label" for="onoffswitch_3">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
+    </div>
+    
 
-    <script src="popup.js"></script>
+    <hr>
+    <div class="text">
+        <p><strong>Paste the Link in below Text area</strong> </p>
+        <textarea id="textarea" placeholder="Add link here, e.g www.netostore.com.au" style="margin: 0px; width: 460px; height: 180px;"></textarea>
+    </div>
+    <script src=" popup.js "></script>
 </body>
 
 </html>
