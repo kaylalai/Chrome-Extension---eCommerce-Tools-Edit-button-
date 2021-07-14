@@ -24,9 +24,11 @@ chrome.storage.local.get('savedtext', function(items) {
                 var count = geteditbutton_contentzone.length;
                 if (count < 1) {
                     enable_etcontentzonebutton();
+
                 }
             }
         });
+        //edit produtct
         chrome.storage.local.get('btnEnable', (response) => {
             if (response.btnEnable == false) {
                 disable_editproduct();
@@ -50,12 +52,77 @@ chrome.storage.local.get('savedtext', function(items) {
                 if (count < 1) {
                     editproduct();
                 }
+            }
+        });
+        //edit button -marketing campaign 
+        chrome.storage.local.get('marketing_campaigns_btnEnable', (response) => {
+            if (response.marketing_campaigns_btnEnable == false) {
+                disable_edit_marketing_campaigns();
+            }
+        });
+        chrome.runtime.onMessage.addListener(request => {
+            if (request.marketing_campaigns_btnEnable == false) {
+                disable_edit_marketing_campaigns();
+            }
+        });
+
+        chrome.storage.local.get('marketing_campaigns_btnEnable', (response) => {
+            if (response.marketing_campaigns_btnEnable == true) {
+                edit_marketing_campaigns();
+            }
+        });
+        chrome.runtime.onMessage.addListener(request => {
+            if (request.marketing_campaigns_btnEnable == true) {
+                var geteditbutton_marketing_campaigns = document.getElementsByClassName("campaigns_edit-button");
+                var count = geteditbutton_marketing_campaigns.length; //
+                if (count < 1) {
+                    edit_marketing_campaigns();
+                }
 
             }
         });
+
     }
 
 });
+
+//function for enable marketing campaigns 
+function edit_marketing_campaigns() {
+    var assests_image_array = [];
+    var assets_ids = [];
+    var assets_images = document.getElementsByTagName("img");
+    for (var k = 0; k < assets_images.length; k++) {
+        if (assets_images[k].hasAttribute("src")) {
+            if (assets_images[k].getAttribute("src").includes("/assets/marketing/")) {
+                assests_image_array.push(assets_images[k].getAttribute("src"));
+
+            }
+        }
+    }
+    for (var q = 0; q < assests_image_array.length; q++) {
+        var assets_id = assests_image_array[q].substring(assests_image_array[q].lastIndexOf("/") + 1, assests_image_array[q].lastIndexOf("."));
+        assets_ids.push(assets_id);
+    }
+
+    var uniqueid = [...new Set(assets_ids)];
+    for (var z = 0; z < uniqueid.length; z++) {
+        for (var t = 0; t < assets_images.length; t++) {
+            if (assets_images[t].hasAttribute("src")) {
+                if (assets_images[t].getAttribute("src").includes(uniqueid[z] + '.')) { //inclde the id and '.' e.g 60.
+                    assets_images[t].closest("a").outerHTML += '<button class="campaigns_edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/adw/view?id=' + uniqueid[z] + "')\">E</button>";
+                }
+
+            }
+        }
+    }
+}
+// function for disable - marketing campaigns //
+function disable_edit_marketing_campaigns() {
+    var alleditbutton = document.getElementsByClassName("campaigns_edit-button");
+    while (alleditbutton.length > 0) {
+        alleditbutton[0].parentNode.removeChild(alleditbutton[0]);
+    }
+}
 // function for enable - econtent_button
 function enable_etcontentzonebutton() {
     var contentzones = [];
@@ -67,9 +134,10 @@ function enable_etcontentzonebutton() {
     for (var p = 0; p < contentzones.length; p++) {
         var zoneid = contentzones[p].getAttribute("data-etcontentzone"); //show the value of attribute data in the data-etcontentzone
         zone_id_array.push(zoneid);
-        contentzones[p].innerHTML += '<button class="etcontentzone_editbutton" style=" display: inline-block; background: #FF0000;color: rgba(255, 255, 255, 255);font-family:Trebuchet MS;font-size:8px;font-weight:bold;padding:2px 4px;width: 20px;height: 20px;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);z-index:1;" onclick="window.open(\'/_cpanel/contentzones/view?id=' + zone_id_array[p] + '\')">E</button>';
+        contentzones[p].innerHTML += '<button class="etcontentzone_editbutton" style=" display: inline-block; background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);z-index:1;transition: .4s;font-family: Arial;" onclick="window.open(\'/_cpanel/contentzones/view?id=' + zone_id_array[p] + '\')">E</button>';
     }
 }
+
 // function for disable - econtent_button
 function disable_etcontentzonebutton() {
     var disable_etcontentzonebutton = document.getElementsByClassName("etcontentzone_editbutton");
@@ -112,18 +180,18 @@ function editproduct() {
         for (var j = 0; j < images.length; j++) {
             if (images[j].hasAttribute("data-src")) {
                 if (images[j].getAttribute("data-src").includes(uniqueSkus[i])) {
-                    images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #FF0000;color: rgba(255, 255, 255, 255);font-family:Trebuchet MS;font-size:8px;font-weight:bold;padding:2px 4px;text decoration:none;width: 20px;height: 20px;line-height: 20x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
+                    images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
                 }
             } else {
                 if (images[j].getAttribute("src").includes(uniqueSkus[i])) {
                     if (images[j].getAttribute("src").includes("/assets/thumbL/")) {
-                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #FF0000;color: rgba(255, 255, 255, 255);font-family:Trebuchet MS;font-size:8px;font-weight:bold;padding:2px 4px;text decoration:none;width: 20px;height: 20px;line-height: 20x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
+                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
                     }
                     if (images[j].getAttribute("src").includes("/assets/thumb/")) {
-                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #FF0000;color: rgba(255, 255, 255, 255);font-family:Trebuchet MS;font-size:8px;font-weight:bold;padding:2px 4px;text decoration:none;width: 20px;height: 20px;line-height: 20x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
+                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
                     }
                     if (images[j].getAttribute("src").includes("/assets/alt")) {
-                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #FF0000;color: rgba(255, 255, 255, 255);font-family:Trebuchet MS;font-size:8px;font-weight:bold;padding:2px 4px;text decoration:none;width: 20px;height: 20px;line-height: 20x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
+                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
                     }
                 }
             }
