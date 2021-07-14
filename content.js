@@ -109,7 +109,7 @@ function edit_marketing_campaigns() {
         for (var t = 0; t < assets_images.length; t++) {
             if (assets_images[t].hasAttribute("src")) {
                 if (assets_images[t].getAttribute("src").includes(uniqueid[z] + '.')) { //inclde the id and '.' e.g 60.
-                    assets_images[t].closest("a").outerHTML += '<button class="campaigns_edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/adw/view?id=' + uniqueid[z] + "')\">E</button>";
+                    assets_images[t].closest("a").outerHTML += '<button class="campaigns_edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:14px;font-weight:bold;padding:2px 4px;text decoration:none;width: 28px;height: 28px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/adw/view?id=' + uniqueid[z] + "')\">E</button>";
                 }
 
             }
@@ -134,7 +134,7 @@ function enable_etcontentzonebutton() {
     for (var p = 0; p < contentzones.length; p++) {
         var zoneid = contentzones[p].getAttribute("data-etcontentzone"); //show the value of attribute data in the data-etcontentzone
         zone_id_array.push(zoneid);
-        contentzones[p].innerHTML += '<button class="etcontentzone_editbutton" style=" display: inline-block; background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);z-index:1;transition: .4s;font-family: Arial;" onclick="window.open(\'/_cpanel/contentzones/view?id=' + zone_id_array[p] + '\')">E</button>';
+        contentzones[p].innerHTML += '<button class="etcontentzone_editbutton" style=" display: inline-block; background: #d21db5;color: rgba(255, 255, 255, 255);font-size:14px;font-weight:bold;padding:2px 4px;text decoration:none;width: 28px;height: 28px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);z-index:1;transition: .4s;font-family: Arial;" onclick="window.open(\'/_cpanel/contentzones/view?id=' + zone_id_array[p] + '\')">E</button>';
     }
 }
 
@@ -180,18 +180,18 @@ function editproduct() {
         for (var j = 0; j < images.length; j++) {
             if (images[j].hasAttribute("data-src")) {
                 if (images[j].getAttribute("data-src").includes(uniqueSkus[i])) {
-                    images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
+                    images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:14px;font-weight:bold;padding:2px 4px;text decoration:none;width: 28px;height: 28px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
                 }
             } else {
                 if (images[j].getAttribute("src").includes(uniqueSkus[i])) {
                     if (images[j].getAttribute("src").includes("/assets/thumbL/")) {
-                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
+                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:14px;font-weight:bold;padding:2px 4px;text decoration:none;width: 28px;height: 28px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
                     }
                     if (images[j].getAttribute("src").includes("/assets/thumb/")) {
-                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
+                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:14px;font-weight:bold;padding:2px 4px;text decoration:none;width: 28px;height: 28px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
                     }
                     if (images[j].getAttribute("src").includes("/assets/alt")) {
-                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:22px;font-weight:bold;padding:2px 4px;text decoration:none;width: 40px;height: 40px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
+                        images[j].closest("a").outerHTML += '<button class="edit-button" style="display: inline-block;background: #d21db5;color: rgba(255, 255, 255, 255);font-size:14px;font-weight:bold;padding:2px 4px;text decoration:none;width: 28px;height: 28px;line-height: 40x;border-radius: 50%;text-align: center;border: solid 2px rgba(255, 255, 255, 0.47);transition: .4s;position:absolute;top:0px;left:0;right:0px;margin:50px;font-family: Arial;" onclick="window.open(\'/_cpanel/products/view?sku=' + uniqueSkus[i] + "')\">E</button>";
                     }
                 }
             }
