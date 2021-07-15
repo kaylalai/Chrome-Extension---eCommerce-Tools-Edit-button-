@@ -1,7 +1,7 @@
 {
-    "name": "Pathway to Neto Edit function ",
+    "name": "eCommerce Tools ",
     "version": "0.0.1",
-    "description": "This is the edit button plugin work for most of the neto store",
+    "description": "This is the edit button plugin that work for most of the neto store",
     "manifest_version": 2,
     "browser_action": {
         "default_popup": "./index.html",
