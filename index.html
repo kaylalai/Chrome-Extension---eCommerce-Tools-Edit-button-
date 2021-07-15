@@ -5,22 +5,25 @@
     <style>
         .first_container {
             justify-content: center;
-            padding: 5px;
             text-align: center;
-            border-radius: 2px;
-            background-color: #f2f2f2;
-            padding: 10px;
+            border-radius: 8px;
+            background-color: #dc1bbd33;
+            padding: 2px;
+            font-family: monospace;
+            font-size: large;
         }
         
         .text {
-            border-radius: 2px;
-            background-color: #f2f2f2;
+            border-radius: 4px;
+            background-color: #e240c812;
             padding: 10px;
+            font-family: monospace;
+            font-size: 120%;
         }
         
         .onoffswitch {
             position: relative;
-            width: 85px;
+            width: 70px;
         }
         
         .onoffswitch-checkbox {
@@ -82,7 +85,7 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            right: 115px;
+            right: 47px;
             border: 2px solid #999999;
             border-radius: 20px;
             transition: all 0.3s ease-in 0s;
@@ -95,27 +98,31 @@
         .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
             right: 0px;
         }
-
         /* Create three equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 32%;
-  padding: 2px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 500px) {
-  .column {
-    width: 28%;
-  }
-}
+        
+        .column {
+            float: left;
+            width: 18%;
+            padding: -2.5px;
+            margin: 1.3px 17.1px;
+            font-family: monospace;
+            font-size: 12px;
+            text-align: center;
+        }
+        /* Clear floats after the columns */
+        
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        
+        @media screen and (max-width: 500px) {
+            .column {
+                width: 25%;
+            }
+        }
     </style>
 </head>
 
@@ -124,48 +131,56 @@
         <img src="icon-32.png" alt="icon" style="width:12px;height:12px;">
         <strong>eCommerce Tools</strong>
     </div>
-    <hr>
+    <hr style="border-top: 1px solid #34a7c19e;">
     <div class="row">
         <div class="column"><strong> Edit Product</strong></div>
         <div class="column"> <strong> Edit content Zone</strong></div>
         <div class="column"><strong> Advertising Campaign</strong></div>
+        <div class="column"><strong> Other </strong></div>
     </div>
     <div class="row">
         <div class="column onoffswitch">
-            
+
             <input type="checkbox" class="onoffswitch-checkbox" id="onoffswitch_1" tabindex="0">
             <label class="onoffswitch-label" for="onoffswitch_1">
             <span class="onoffswitch-inner"></span>
             <span class="onoffswitch-switch"></span>
             </label>
-            
+
         </div>
-        
+
         <div class="column onoffswitch">
-           
-            <input type="checkbox"  class="onoffswitch-checkbox" id="onoffswitch_2" tabindex="0">
+            <input type="checkbox" class="onoffswitch-checkbox" id="onoffswitch_2" tabindex="0">
             <label class="onoffswitch-label" for="onoffswitch_2">
             <span class="onoffswitch-inner"></span>
             <span class="onoffswitch-switch"></span>
         </label>
         </div>
-        
+
         <div class="column onoffswitch">
-            
             <input type="checkbox" class="onoffswitch-checkbox" id="onoffswitch_3" tabindex="0">
             <label class="onoffswitch-label" for="onoffswitch_3">
                 <span class="onoffswitch-inner"></span>
                 <span class="onoffswitch-switch"></span>
             </label>
         </div>
+        <div class="column onoffswitch">
+            <input type="checkbox" class="onoffswitch-checkbox" id="onoffswitch_4" tabindex="0">
+            <label class="onoffswitch-label" for="onoffswitch_4">
+                <span class="onoffswitch-inner"></span>
+                <span class="onoffswitch-switch"></span>
+            </label>
+        </div>
     </div>
-    
 
-    <hr>
+    <hr style="border-top: 1px solid #34a7c19e;">
     <div class="text">
-        <p><strong>Paste the Link in below Text area</strong> </p>
+        <strong>Paste the Link in below Text area</strong>
+        <br>
+        <br>
         <textarea id="textarea" placeholder="Add link here, e.g www.netostore.com.au" style="margin: 0px; width: 460px; height: 180px;"></textarea>
     </div>
+    <hr style="border-top: 1px solid #34a7c19e;">
     <script src=" popup.js "></script>
 </body>
 
